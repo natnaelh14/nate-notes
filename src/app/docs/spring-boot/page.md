@@ -1,8 +1,8 @@
 ---
-title: CacheAdvance.predict()
+title: Spring boot
 nextjs:
   metadata:
-    title: CacheAdvance.predict()
+    title: Spring boot
     description: Quidem magni aut exercitationem maxime rerum eos.
 ---
 
