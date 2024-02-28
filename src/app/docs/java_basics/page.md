@@ -1,18 +1,20 @@
 ---
-title: Neuralink integration
+title: Java basics
 nextjs:
   metadata:
-    title: Neuralink integration
-    description: Quidem magni aut exercitationem maxime rerum eos.
+    title: Java basics
+    description: Learn Java Essentials
 ---
 
-Quasi sapiente voluptates aut minima non doloribus similique quisquam. In quo expedita ipsum nostrum corrupti incidunt. Et aut eligendi ea perferendis.
+![alt text](./one)
+
+![alt text](/src/public/image/one.png)
 
 ---
 
-## Quis vel iste dicta
+## Introduction
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur.
+You run Java using a Java Virtual Machine (JVM) and Java Runtime Edition (JRE).
 
 ### Et pariatur ab quas
 
