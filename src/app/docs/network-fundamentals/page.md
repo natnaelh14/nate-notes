@@ -19,11 +19,15 @@ The top layer in most layered models is called the **application layer**.
 
 With **Horizontal Layers** in Networks, applications in the application layer are seemingly communicating with each other directly or horizontally. They are not aware of the layer below.
 
+![](/image/devops/devops-01.png)
+
 ### Encapsulation and Decapsulation
 
 Each layer adds its own header to the message coming from above and the receiving entity on the other end removes it.
 
 Adding the header is called **encapsulation** and removing it is called **decapsulation**.
+
+![](/image/devops/devops-02.png)
 
 There are several models along which computer networks are organized. The two most common ones are **the Open Systems Interconnection (OSI) model** and the **Transmission Control Protocol/Internet Protocol (TCP/IP) model**.
 
@@ -31,6 +35,8 @@ There are several models along which computer networks are organized. The two mo
 
 The model splits up a communication system into 7 abstract layers, stacked upon each other.
 Mnemonic: Please Do Not Throw Sausage Pizza Away
+
+![](/image/devops/devops-03.png)
 
 **Application Layer** - End-users interact with the application layer. Layer 8 is a pseudo-layer for the end user.
 
@@ -52,6 +58,12 @@ The TCP/IP Model is also known as the Internet protocol suite.
 Its development was funded by DARPA (Defense Advanced Research Projects Agency).
 
 The TCP/IP model splits up a communication system into 5 abstract layers, stacked upon each other. Each layer performs a particular service and communicates with the layers above and below itself.
+
+![](/image/devops/devops-04.png)
+
+![](/image/devops/devops-05.png)
+
+![](/image/devops/devops-06.png)
 
 ---
 
@@ -119,6 +131,8 @@ A URL, or Universal Resource Locator, is used to locate files that exist on serv
 
 URLs consist of the following parts: protocol in use, the hostname of the server, the location of the file, arguments to the file.
 
+![](/image/devops/devops-07.png)
+
 Note that HTTP is a stateless protocol: servers do not store any information about clients by default.
 
 Application layer protocols rely on underlying transport layer protocols called UDP (User Diagram Protocol) and TCP (Transmission Control Protocol).
@@ -133,20 +147,145 @@ There are two kinds of HTTP connections: Non-persistent HTTP connections, Persis
 
 • Persistent HTTP was developed, which used a single client-server TCP connection for all the HTTP request-responses for a session.
 
+The first line is called the request line, while the rest are called header lines.
+https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+
+![](/image/devops/devops-08.png)
+
+![](/image/devops/devops-09.png)
+
+**Uniform Resource Locators (URLs)** are used to identify an object over the web. A URL has the following format: protocol://hostname:port/path-and-file-name.
+HTTP response messages don’t have the URL or the method fields. Those are strictly for request messages.
+
+![](/image/devops/devops-10.png)
+
+• **Connection type** - In this case, indicates that the server will close the TCP connection after it sends the response.
+
+• **Date** - The date at which the response was generated.
+
+• **Server** - Gives server software specification of the server that generated the message. Apache in this case.
+
+• **Last-Modified** - The date on which the object being sent was last modified.
+
+• **Content-Length** - The length of the object being sent in 8-bit bytes.
+
+• **Content-Type** - The type of content. The type of the file is not determined by the file extension of the object, but by this header
+The status code comes next which tells the client if the request succeeded or failed.
+• 1xx codes fall in the informational category
+• 2xx codes fall in the success category
+• 3xx codes are for redirection
+• 4xx is client error
+• 5xx is server error
+**cURL (Client URL)** is a command-line tool that transfers data to or from a server.
+If you provide a URL without a leading protocol:// scheme, curl guesses what protocol you want. It then defaults to HTTP but assumes others based on often-used host name prefixes.
+
+![](/image/devops/devops-11.png)
+
+• The **--head flag or -I** in short, tells cURL to send an HTTP request with the head method. In other words, the entity-body of the HTTP message is not fetched.
+
+• The **-silent flag** tells cURL to not display the progress meter.
+
+### Cookies
+
+Cookies are unique string identifiers that can be stored on the client’s browser.
+These identifiers are set by the server through HTTP headers when the client first navigates to the website.
+
+When a server wants to set a cookie on the client-side, it includes the header Set-cookie: value in the HTTP response.
+
+The cookie file contains:
+
+• The website’s domain
+
+• The string value of the cookie
+
+• The date that the cookie expires (yes, much like actual cookies, they do expire)
+
+### DNS
+
+The most well-known lookup service is the **Domain Name System (DNS)**.
+
+![](/image/devops/devops-12.png)
+
+![](/image/devops/devops-13.png)
+
+Root DNS servers are the first point of contact for a DNS query (after the client’s local cache of names and IP addresses).
+
+**Local DNS Cache** - DNS mappings are often also cached locally on the client end-system to avoid repetitive lookups and saves time for often visited websites. This is done via an entity called the local resolver library, which is part of the OS. The application makes an API call to this library. This library manages the local DNS cache.
+
+The DNS distributed database consists of entities called RRs, or Resource Records.
+RRs contain some or all of the following values:
+
+• **Name** of the domain.
+
+• **Resource data (RDATA)** provides information appropriate for the type of resource record.
+
+• **Type** of the resource record. We will discuss these shortly.
+
+• **Time-to-live (TTL)** is how long the record should be cached by the client in seconds.
+
+• **DNS Class** - There are many types of classes but we’re mainly concerned with IN which implies the ‘Internet’ class.
+
+Types of resource records
+
+• **Address** type or A addresses contain IPv4 address to hostname mappings.
+
+• **Canonical** name or CNAME records are records of alias hostnames against actual hostnames. For example, if, ibm.com is really servereast.backup2.com, then the latter is the canonical name of ibm.com.
+
+• **Mail Exchanger** or MX records are records of the server that accepts email on behalf of a certain domain.
+
+## Transport Layer
+
+The network layer (directly below the transport layer) transports messages from one end-system to another, the transport layer delivers the message to and from the relevant application on an end-system.
+
+Other responsibilities of the transport layer -
+
+• Logical application-to-application delivery
+
+• Can allow multiple conversations
+
+• Segments data
+
+• Multiplexes & demultiplexes data
+
+The transport layer and its protocols reside on end-systems.
+
+**Demultiplexing** is the process of delivering the correct packets to the correct applications from one stream.
+
+**Multiplexing** allows messages to be sent to more than one destination host via a single medium.
+
+The transport layer labels packets with the port number of the application a message is from and the one it is addressed to. This is what allows the layer to multiplex and demultiplex data.
+
+• Port numbers are 16-bit long and range from 0 and 65,535.
+
+• The port numbers 0−1023 are reserved for certain applications and are called well-known ports. For example, port 80 is reserved for HTTP.
+
+**Sockets**, which are gateways to applications, are identified by a combination of an IP address and a 16-bit port number.
+
+When more packets than the network has bandwidth for are sent through, some of them start getting dropped and others get delayed. This phenomenon leads to an overall drop in performance and is called **congestion**.
+
+• Congestion physically occurs at the network layer (i.e., in routers)
+Bandwidth cannot be divided and allocated equally amongst end-systems!
+**Congestion collapse** occurs when all end-systems are sending a lot of traffic but nothing is being received, for example, when all or most packets are dropped. There are few causes for this, including but not limited to **Spurious retransmissions**.
+
+To avoid congestion, on average, the sum of the transmission rate allocated to all hosts at any given time should be less than or equal to the bottleneck link’s bandwidth.
+
+There are three types of imperfections that must be considered by the transport layer:
+
+• Segments can be corrupted by transmission errors.
+
+o The simplest error detection scheme is the checksum.
+
+• Segments can be lost.
+
+o Since the receiver sends an acknowledgment segment after having received each data segment, the simplest solution to deal with losses is to use a retransmission timer.
+
+• Segments can be reordered or duplicated.
+
+o To identify duplicates, transport protocols associate an identification number with each segment called the sequence number.
+
+**UDP, or User Diagram Protocol**, is a transport layer protocol that works over the network layer’s famous Internet protocol.
+
+UDP does not involve any initial handshaking like TCP does and is hence called a connectionless (no established connection between hosts) protocol.
+Other than the headers, a UDP datagram contains a body of data which can be up to 65,528 bytes long.
+
 ---
-
-## Vitae laborum maiores
-
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur.
-
-### Corporis exercitationem
-
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
-
-Possimus saepe veritatis sint nobis et quam eos. Architecto consequatur odit perferendis fuga eveniet possimus rerum cumque. Ea deleniti voluptatum deserunt voluptatibus ut non iste. Provident nam asperiores vel laboriosam omnis ducimus enim nesciunt quaerat. Minus tempora cupiditate est quod.
-
-### Reprehenderit magni
-
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
-
-Voluptas beatae omnis omnis voluptas. Cum architecto ab sit ad eaque quas quia distinctio. Molestiae aperiam qui quis deleniti soluta quia qui. Dolores nostrum blanditiis libero optio id. Mollitia ad et asperiores quas saepe alias.
