@@ -497,9 +497,44 @@ Simply stated, Polymorphism means many forms.
 
 ## Array
 
+An **array** is a data structure, that allows you to store a sequence of values, all of the same type.
 When you declare an array, it doesn’t automatically allocate memory to it.
 
 ![](/image/java/java-152.png)
+
+Because the values are specified, the length of the array can be determined,so we don't specify the size of the square brackets.
+
+![](/image/java/java-154.png)
+
+![](/image/java/java-155.png)
+
+![](/image/java/java-156.png)
+
+![](/image/java/java-157.png)
+
+```js
+        int[] firstTen = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        for (int element : firstTen) {
+            System.out.println(element + " ");
+        }
+```
+
+![](/image/java/java-158.png)
+
+```js
+        import java.util.Arrays;
+        ...
+        int[] firstTen = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        System.out.println(Arrays.toString(firstTen));
+```
+
+### Binary Search
+
+![](/image/java/java-159.png)
+
+![](/image/java/java-160.png)
+
+![](/image/java/java-161.png)
 
 ## Multidimensional Array
 
