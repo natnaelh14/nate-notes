@@ -220,7 +220,19 @@ But when you initialize, I will allocate memory space for the member variables (
 
 ![](/image/java/java-63.png)
 
+## Packages
+
+![](/image/java/java-167.png)
+
+There is no relationship between **parent** and **child** packages.
+
+**import** is required to use a class from a different package.
+
+![](/image/java/java-168.png)
+
 ## Access Modifiers
+
+They encapsulate and restrict access to member variables and methods.
 
 ![](/image/java/java-64.png)
 
@@ -228,15 +240,29 @@ A class could be thought of as a powerful way to find a data type, like String.
 
 ![](/image/java/java-65.png)
 
-When there is no modifier access specified, Java will automatically.
+• When there is no modifier access specified, Java will automatically.
+
+• The default access modifier is **package private**. It acts like public, if in the same package.
+
+• It acts like private to other packages.
 
 ![](/image/java/java-66.png)
 
 ![](/image/java/java-67.png)
 
+![](/image/java/java-169.png)
+
+### Best Practices
+
+![](/image/java/java-170.png)
+
 ## Encapsulation
 
 ![](/image/java/java-68.png)
+
+![](/image/java/java-144.png)
+
+An application programming interface, **API** is a public contract that tells other class members how to use the class.
 
 ## Getter and Setter
 
@@ -274,6 +300,12 @@ The call to **this** must be the first statement in the constructor body.
 
 ![](/image/java/java-78.png)
 
+### Copy Constructor
+
+Copy constructor is a constructor which takes in as an argument an instance of that same class and copies over the member variables.
+
+![](/image/java/java-165.png)
+
 ## Reference Vs Object Vs Instance Vs Class
 
 ![](/image/java/java-79.png)
@@ -284,7 +316,21 @@ The call to **this** must be the first statement in the constructor body.
 
 ![](/image/java/java-82.png)
 
-## Static Vs Instance Variables
+![](/image/java/java-166.png)
+
+• Java uses call by value.
+
+• Any value passed as parameters is "copied" to the method arguments.
+
+• If the argument is an object reference, the reference is copied.
+
+• The reference copy points to the same instance as the source object reference. So if you change the class member value, it will be propagated everywhere else.
+
+## Static
+
+The **static** keyword is used when you need to define a class member as independent from any object instance.
+
+### Static Vs Instance Variables
 
 ![](/image/java/java-83.png)
 
@@ -302,11 +348,11 @@ The call to **this** must be the first statement in the constructor body.
 
 ![](/image/java/java-89.png)
 
-## Static Vs Instance Methods
+### Static Vs Instance Methods
 
 ![](/image/java/java-90.png)
 
-**Static methods** don’t need an instance to be created.
+**Static methods** don’t need an instance to be created. That is why the **main()** method is a static method.
 
 ![](/image/java/java-91.png)
 
@@ -461,12 +507,6 @@ This means the compiler is determining the right method to call, based on the me
 
 ![](/image/java/java-143.png)
 
-## Encapsulation
-
-![](/image/java/java-144.png)
-
-An application programming interface, **API** is a public contract that tells other class members how to use the class.
-
 ## Polymorphism
 
 Simply stated, Polymorphism means many forms.
@@ -536,17 +576,80 @@ Because the values are specified, the length of the array can be determined,so w
 
 ![](/image/java/java-161.png)
 
-## Multidimensional Array
+```js
+        String[] sArray = {"Able", "Jane", "Mark", "Ralph", "David"};
+        Arrays.sort(sArray);
+        if(Arrays.binarySearch(sArray, "Mark") >= 0 ){
+            System.out.println("Found Mark in the list.");
+        }
+        //Found Mark in the list.
+```
+
+### Equality of Arrays
+
+```js
+        int[] s1 = {1, 2, 3, 4, 5};
+        int[] s2 = {1, 2, 3, 4, 5};
+        if(Arrays.equals(s1, s2)) {
+            System.out.println("Arrays are equal.");
+        }
+        //Arrays are equal.
+```
+
+### Reference Types vs Value Types
+
+```js
+
+        //Reference is the address to the object in memory, but not the object itself.
+        int[] myIntArray = new int[5];
+        int[] anotherArray = myIntArray;
+        System.out.println("myIntArray = " + Arrays.toString(myIntArray));
+        System.out.println("anotherArray = " + Arrays.toString(anotherArray));
+        anotherArray[0] = 1;
+        System.out.println("after change myIntArray = " + Arrays.toString(myIntArray));
+        System.out.println("after change anotherArray = " + Arrays.toString(anotherArray));
+        // myIntArray = [0, 0, 0, 0, 0]
+        // anotherArray = [0, 0, 0, 0, 0]
+        // after change myIntArray = [1, 0, 0, 0, 0]
+        // after change anotherArray = [1, 0, 0, 0, 0]
+
+```
+
+### Variable Argument
+
+![](/image/java/java-162.png)
+
+### Multidimensional Array
 
 ![](/image/java/java-153.png)
 
+![](/image/java/java-163.png)
+
+## List
+
+![](/image/java/java-164.png)
+
 ```js
-/** @type {import('@tailwindlabs/lorem').ipsum} */
-export default {
-  lorem: 'ipsum',
-  dolor: ['sit', 'amet', 'consectetur'],
-  adipiscing: {
-    elit: true,
-  },
+record GroceryItem (String name, String type, int count) {
+    public GroceryItem(String name) {
+        this(name, "DAIRY", 10);
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        GroceryItem[] groceryArray = new GroceryItem[3];
+        groceryArray[0] = new GroceryItem("milk");
+        groceryArray[1] = new GroceryItem("apples", "PRODUCE", 6);
+        groceryArray[2] = new GroceryItem("oranges");
+        System.out.println(Arrays.toString(groceryArray));
+        //<> is called a diamond operator so that it can infer the array type.
+        ArrayList<GroceryItem> groceryList = new ArrayList<>();
+        groceryList.add(new GroceryItem("avocado"));
+        groceryList.add(new GroceryItem("milk"));
+        groceryList.add(new GroceryItem("cake"));
+        groceryList.set(0, new GroceryItem("juice"));
+        groceryList.remove(2);
+        System.out.println(groceryList);
+    }
 }
 ```
