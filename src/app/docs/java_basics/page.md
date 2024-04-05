@@ -364,6 +364,40 @@ The method **bark** is just an instance method, since it doesn’t have the **st
 
 ![](/image/java/java-94.png)
 
+## Final
+
+```js
+    final String name = "Acme Inc";
+```
+
+![](/image/java/java-171.png)
+
+## Nested Classes
+
+### Static Inner Classes
+
+![](/image/java/java-172.png)
+
+### Inner Class (Non-Static Nested Class)
+
+![](/image/java/java-173.png)
+
+### Local Class
+
+![](/image/java/java-174.png)
+
+### Anonymous Class
+
+![](/image/java/java-175.png)
+
+## Local Classes and Closure Variables
+
+What needs to happen for an outer variable to be accessed in a local class?
+
+It has to be final or effectively final.
+
+![](/image/java/java-176.png)
+
 ## POJO
 
 ![](/image/java/java-95.png)

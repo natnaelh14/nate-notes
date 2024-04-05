@@ -285,7 +285,65 @@ o To identify duplicates, transport protocols associate an identification number
 
 **UDP, or User Diagram Protocol**, is a transport layer protocol that works over the network layer’s famous Internet protocol.
 
-UDP does not involve any initial handshaking like TCP does and is hence called a connectionless (no established connection between hosts) protocol.
+UDP does not involve any initial handshaking like TCP does and is hence called a connection-less (no established connection between hosts) protocol.
 Other than the headers, a UDP datagram contains a body of data which can be up to 65,528 bytes long.
+
+![](/image/devops/devops-14.png)
+
+**TCP**, or **the transmission control protocol**, is one of the two key protocols of the transport layer.
+
+Here are some key responsibilities of **TCP**.
+
+• Send data at an appropriate transmission rate.
+
+• Segment data. The application layer sends the transport layer a continuous and unsegmented stream of data so that there’s no limit to how much data the application layer can give to the transport layer at once.
+
+• End to end flow control. Flow control means not overwhelming the receiver. It’s not the same as congestion control.
+
+• Identify and retransmit messages that do not get delivered.
+
+• Identify when messages are received out of order and reassemble them.
+
+Applications that use TCP: File Transfer, Secure Shell SSH, Email,Web Browsing
+
+TCP connections have exactly two endpoints! This means that **broadcasting** or **multi-casting** is not possible with TCP.
+
+## Socket Programming
+
+**Sockets** are just software endpoints that processes write and read data from. They are bound to an IP address and a port.
+
+## Network Layer
+
+The main objective of the network layer is to allow end systems to exchange information through intermediate systems called **routers**. The unit of information in the network layer is called a **packet**.
+
+Principles of a Network Layer:
+
+• Each network layer entity is identified by a **network layer address**.
+
+• The service provided by the network layer does not depend on the service or the internal organization of **the underlying data link layers**.
+
+There are two possible internal organizations of the network layer: **datagram** and **virtual circuits**.
+
+Datagram-based network layers include **IPv4** and **IPv6** in the global Internet
+
+### IPV4
+
+The **Internet Protocol (IP)** is the network layer protocol of the TCP/IP protocol suite.
+
+**IP Addresses**
+
+**IPv4 addresses** are written as 32 bit numbers in dotted-decimal format, such as a sequence of four integers separated by dots.
+
+![](/image/devops/devops-15.png)
+
+**Multi-homing**
+
+An IPv4 address is used to identify an interface on a router or an interface on a host.
+
+A **naive allocation scheme** would be to provide an IPv4 address to each host when the host is attached to the Internet on a first come, first served basis.
+
+**Sub-netting**
+
+routers should only maintain routes towards blocks of addresses and not towards individual hosts. For this, blocks of IP addresses are assigned to ISPs. The ISPs assign sub blocks of the assigned address space in a hierarchical manner. These sub blocks of IP addresses are called **subnets**.
 
 ---
