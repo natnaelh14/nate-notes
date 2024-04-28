@@ -154,6 +154,10 @@ Method is a collection statements, one or more, that perform an operation.
 
 ![](/image/java/java-38.png)
 
+You can assign strong access privilege, but you can not make it weaker.
+
+![](/image/java/java-178.png)
+
 ## Switch Statement
 
 ![](/image/java/java-39.png)
@@ -446,6 +450,8 @@ Instead of the above utilizing POJO, with record, You can just use this block of
 
 It is a way to organize classes into a parent child hierarchy, which lets the child inherit (re-use) fields and methods from its parents.
 **Extends** – using extends specifies the superclass (or the parent class) of the class we are declaring.
+
+![](/image/java/java-177.png)
 
 ![](/image/java/java-110.png)
 
